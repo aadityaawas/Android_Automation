@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+    <listeners>
+        <listener class-name="BaseClasses.TestExecutionListener"/>
+    </listeners>
+    <test name="Test" group-by-instances="true">
+        <groups>
+            <run>
+                <include name="Smoke" />
+            </run>
+        </groups>
+        <classes>
+            <!-- Specify the Login class -->
+            <class name="TestClasses.BusBookingTest">
+            <methods>
+                <include name="isAllElementPresent_tc4"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

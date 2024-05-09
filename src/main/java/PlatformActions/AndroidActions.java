@@ -17,19 +17,26 @@ public class AndroidActions extends CommonActions {
         this.driver = driver;
     }
 
-    public void setData(WebElement element, String data)
-    {
-        element.click();
-        if (driver.isKeyboardShown()){
-            printMessage("keypad is shown. Closing it now");
-            element.sendKeys(data);
+    public void setData(WebElement element, String data) {
+        String isElementClickable = element.getAttribute("clickable");
+        if (isElementClickable.equals("true")){
+            element.click();
+            if (driver.isKeyboardShown()){
+                printMessage("keypad is shown. Closing it now");
+                element.sendKeys(data);
+            }
+            else
+                printMessage("keypad is not getting displayed");
         }
         else
-            printMessage("keypad is not getting displayed");
+            printMessage("Element is not clickable");
     }
 
     public void selectButton(WebElement element){
-        element.click();
+        String isElementClickable = element.getAttribute("clickable");
+        if (isElementClickable.equals("true")) {
+            element.click();
+        }
     }
 
     public String getElementText(WebElement element){
@@ -61,7 +68,7 @@ public class AndroidActions extends CommonActions {
     }
 
     public boolean isToastMessageDisplayed(){
-        return isElementDisplayed(driver.findElement(By.className("android.widget.Toast")));
+        return isElementDisplayed(driver.findElement(By.cssSelector("android.widget.Toast")));
     }
 
 

@@ -8,9 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import static PlatformActions.AndroidActions.printMessage;
@@ -18,6 +20,10 @@ import static PlatformActions.AndroidActions.printMessage;
 public class LoginTest extends AndroidBaseTest {
 
     private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
+    @BeforeMethod
+    public void pageSetup(){
+        //driver.manage().timeouts().getPageLoadTimeout();
+    }
 
      @Test(priority = 1)
     public void selectionOfCountryLanguage_tc1() throws InterruptedException {
@@ -29,7 +35,7 @@ public class LoginTest extends AndroidBaseTest {
         loginPage.selectContinueButton();
     }
 
-      @Test
+    @Test
     public void skipButtonGettingDisplayedAfterScrollingToLastPage_tc2() throws InterruptedException {
         Assert.assertTrue(loginPage.isLoginButtonDisplayed());
         for (int index = 0 ; index < 3 ; index++){

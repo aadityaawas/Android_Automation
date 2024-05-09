@@ -211,15 +211,20 @@ public class LoginPage extends AndroidActions {
         //getLatestOTPSMS();
         List<WebElement> elementList = driver.findElements(By.cssSelector("android.widget.TextView"));
         int listCount = elementList.size();
+        int flag=0;
         for (int index = 0 ; index < listCount ; index++){
             if (elementList.get(index).getText().contains("-REDBUS")){
                 printMessage(elementList.get(index).getText());
                 elementList.get(index).click();
+                printMessage("index value"+index);
+                flag++;
                 break;
             }
-            else {
-                printMessage("Nahi mila msg");
-            }
+        }
+        if(flag > 0){
+            printMessage("msg received <3<3<3");
+        }else {
+            printMessage("msg not received");
         }
         return getLatestOTPText();
     }

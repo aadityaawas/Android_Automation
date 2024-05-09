@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+    <listeners>
+        <listener class-name="BaseClasses.TestExecutionListener"/>
+    </listeners>
+    <test name="Test" group-by-instances="true">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <!-- Specify the Login class -->
+            <class name="TestClasses.LoginTest">
+            <methods>
+                <include name="loginViaMobileNumber_tc3"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

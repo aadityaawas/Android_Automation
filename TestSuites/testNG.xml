@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+    <listeners>
+        <listener class-name="BaseClasses.TestExecutionListener"/>
+    </listeners>
+    <test name="Test" group-by-instances="true">
+        <groups>
+            <run>
+                <!-- Specify the group "AC" to include the Login class -->
+                <include name="Smoke" />
+            </run>
+        </groups>
+        <classes>
+            <!-- Specify the Login class -->
+            <class name="TestClasses.BusBookingTest"/>
+            <class name="TestClasses.TempTest"/>
+        </classes>
+    </test>
+</suite>

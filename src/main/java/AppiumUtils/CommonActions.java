@@ -6,6 +6,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public abstract class CommonActions {
@@ -17,8 +18,8 @@ public abstract class CommonActions {
         return properties;
     }
 
-    public AppiumDriverLocalService startAppiumServer(String ipAddress, int portNumber){             //  C\Users\Dell\AppData\Roaming\npm\node_modules\appium\build\lib\main.js
-        AppiumDriverLocalService service = new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\Dell\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+    public AppiumDriverLocalService startAppiumServer(String ipAddress, int portNumber, File mainJSFilePath){
+        AppiumDriverLocalService service = new AppiumServiceBuilder().withAppiumJS(mainJSFilePath)
                 .usingPort(portNumber)
                 .withIPAddress(ipAddress)
                 .build();
@@ -28,6 +29,26 @@ public abstract class CommonActions {
 
     public void sleep(int sleepTime) throws InterruptedException {
         Thread.sleep(sleepTime);
+    }
+
+    public String getLocalMachinePlatformName(){
+        return System.getProperty("os.name");
+    }
+
+
+    public File getAppiumMainJSFilePath(String platformName){
+        switch (platformName.toLowerCase()){
+            case "windows":
+                return new File("C:\\Users\\Dell\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js");
+
+            case "mac os x":
+            case "macos":
+                return new File("need to put the path for MAC accordingly");
+
+            case "linux":
+                return new File("need to put the path for Linux accordingly");
+        }
+        return null;
     }
 }
 

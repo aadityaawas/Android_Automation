@@ -7,6 +7,7 @@ public class TempTest extends AndroidBaseTest {
     @Test(groups = {"Smoke"})
     public void tc1(){
         tempPage.fromTempPage();
+        loginPage.selectContinueButton();
     }
 
 }

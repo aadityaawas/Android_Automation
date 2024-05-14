@@ -55,7 +55,7 @@ public class AndroidBaseTest extends CommonActions {
         System.out.println("Test executing stopped. Performing cleanup");
 
     }
-    public void getAppiumServerStarted(String ipAddress) {
+    private void getAppiumServerStarted(String ipAddress) {
         int portNumber;
         File mainJSFilePath = getAppiumMainJSFilePath(getLocalMachinePlatformName());
         try {

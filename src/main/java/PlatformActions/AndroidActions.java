@@ -17,7 +17,7 @@ public class AndroidActions extends CommonActions {
         this.driver = driver;
     }
 
-    public void setData(WebElement element, String data) {
+    protected void setData(WebElement element, String data) {
         String isElementClickable = element.getAttribute("clickable");
         if (isElementClickable.equals("true")){
             element.click();
@@ -32,18 +32,18 @@ public class AndroidActions extends CommonActions {
             printMessage("Element is not clickable");
     }
 
-    public void selectButton(WebElement element){
+    protected void selectButton(WebElement element){
         String isElementClickable = element.getAttribute("clickable");
         if (isElementClickable.equals("true")) {
             element.click();
         }
     }
 
-    public String getElementText(WebElement element){
+    protected String getElementText(WebElement element){
         return element.getText();
     }
 
-    public boolean isElementDisplayed(WebElement element){
+    protected boolean isElementDisplayed(WebElement element){
         try {
             element.isDisplayed();
             return true;

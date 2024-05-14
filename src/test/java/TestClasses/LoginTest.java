@@ -49,6 +49,7 @@ public class LoginTest extends AndroidBaseTest {
     public void loginViaMobileNumber_tc3() throws InterruptedException, IOException {
         loginPage.selectContinueButton();
 
+
         Assert.assertTrue(loginPage.isLoginButtonDisplayed());
         loginPage.selectLoginButton();
         Assert.assertTrue(loginPage.isSignUpPageHeaderDisplayed());

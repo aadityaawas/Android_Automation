@@ -11,14 +11,14 @@ import java.util.Properties;
 
 public abstract class CommonActions {
 
-    public Properties readPropertyFile() throws IOException {
+    protected Properties readPropertyFile() throws IOException {
         Properties properties = new Properties();
         FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");
         properties.load(fileInputStream);
         return properties;
     }
 
-    public AppiumDriverLocalService startAppiumServer(String ipAddress, int portNumber, File mainJSFilePath){
+    protected AppiumDriverLocalService startAppiumServer(String ipAddress, int portNumber, File mainJSFilePath){
         AppiumDriverLocalService service = new AppiumServiceBuilder().withAppiumJS(mainJSFilePath)
                 .usingPort(portNumber)
                 .withIPAddress(ipAddress)
@@ -27,16 +27,16 @@ public abstract class CommonActions {
         return service;
     }
 
-    public void sleep(int sleepTime) throws InterruptedException {
+    protected void sleep(int sleepTime) throws InterruptedException {
         Thread.sleep(sleepTime);
     }
 
-    public String getLocalMachinePlatformName(){
+    protected String getLocalMachinePlatformName(){
         return System.getProperty("os.name");
     }
 
 
-    public File getAppiumMainJSFilePath(String platformName){
+    protected File getAppiumMainJSFilePath(String platformName){
         switch (platformName.toLowerCase()){
             case "windows":
                 return new File("C:\\Users\\Dell\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js");

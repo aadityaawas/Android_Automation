@@ -62,8 +62,8 @@ public class LoginTest extends AndroidBaseTest {
         //Assert.assertTrue(loginPage.isToastMessageDisplayed());
         printMessage(loginPage.getToastMessage());
         Assert.assertTrue(loginPage.isVerifyOTPButtonDisplayed());
-        driver.openNotifications();
-        driver.findElement(AppiumBy.accessibilityId("Clear all notifications.")).click();
+        androidDriver.openNotifications();
+        androidDriver.findElement(AppiumBy.accessibilityId("Clear all notifications.")).click();
         String otp = loginPage.readOTP();
         loginPage.setOTP(otp);
     }
@@ -74,6 +74,11 @@ public class LoginTest extends AndroidBaseTest {
         loginPage.selectLoginButton();
         loginPage.selectGoogleAccountListButton();
         loginPage.selectGoogleAccountForList("tester1@gmail.com"); // Please use the real email for this. I have placed sum dummy email here.
+    }
+
+    @Test
+    public void test(){
+        loginPage.selectContinueButton();
     }
 
    

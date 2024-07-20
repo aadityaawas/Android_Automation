@@ -6,15 +6,19 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
+import java.net.ServerSocket;
 import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class CommonActions {
 
-    protected Properties readPropertyFile() throws IOException {
+    protected static Properties readPropertyFile() throws IOException {
+        UniversalLogger.info("Reading properties file");
         Properties properties = new Properties();
-        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");
+        UniversalLogger.debug("File path : " + System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");
+        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");;
         properties.load(fileInputStream);
+        UniversalLogger.info("Properties file read successfully");
         return properties;
     }
 
@@ -25,6 +29,11 @@ public abstract class CommonActions {
                 .build();
         service.start();
         return service;
+    }
+
+    public int getRandomSelection(int maximumValue, int minimumValue){
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        return random.nextInt(maximumValue - minimumValue + 1) + minimumValue;
     }
 
     protected void sleep(int sleepTime) throws InterruptedException {
@@ -49,6 +58,23 @@ public abstract class CommonActions {
                 return new File("need to put the path for Linux accordingly");
         }
         return null;
+    }
+
+    protected int getFreePortNumber() throws IOException {
+        int portNumber;
+        int defaultPortNumber = Integer.parseInt(readPropertyFile().getProperty("portNumber"));
+        try (ServerSocket socket = new ServerSocket(0)) {
+            portNumber = socket.getLocalPort();
+            if (portNumber != defaultPortNumber) {
+                return portNumber;
+            } else {
+                int getRandomWaitTimeToRemoveConcurrency = getRandomSelection(ReusableValues.getDefaultMaximumValue(), ReusableValues.getDefaultMinimumValue()) * ReusableValues.getDefaultConcurrencyWaitDurationMultiplier();
+                sleep(getRandomWaitTimeToRemoveConcurrency);
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return portNumber;
     }
 }
 

@@ -15,8 +15,7 @@ public abstract class CommonActions {
     protected static Properties readPropertyFile() throws IOException {
         UniversalLogger.info("Reading properties file");
         Properties properties = new Properties();
-        UniversalLogger.debug("File path : " + System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");
-        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");;
+        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\GeneralData.properties");
         properties.load(fileInputStream);
         UniversalLogger.info("Properties file read successfully");
         return properties;
@@ -33,7 +32,7 @@ public abstract class CommonActions {
 
     public int getRandomSelection(int maximumValue, int minimumValue){
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return random.nextInt(maximumValue - minimumValue + 1) + minimumValue;
+        return random.nextInt(maximumValue - minimumValue + ReusableValues.getDefaultMinimumValue()) + minimumValue;
     }
 
     protected void sleep(int sleepTime) throws InterruptedException {
@@ -60,6 +59,12 @@ public abstract class CommonActions {
         return null;
     }
 
+    /**
+     * This function retrieves a free port number.
+     *
+     * @return the free port number as an integer
+     * @throws IOException if an I/O error occurs
+     */
     protected int getFreePortNumber() throws IOException {
         int portNumber;
         int defaultPortNumber = Integer.parseInt(readPropertyFile().getProperty("portNumber"));

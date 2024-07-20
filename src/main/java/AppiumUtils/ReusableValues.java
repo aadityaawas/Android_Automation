@@ -5,7 +5,6 @@ public class ReusableValues {
     private static final int DEFAULT_MINIMUM_VALUE = 1;
     private static final int DEFAULT_MAXIMUM_VALUE = 10;
     private static final int DEFAULT_WAIT_TIME = 10;
-    private static final int DEFAULT_SLEEP_TIME = 10;
     private static final int DEFAULT_CONCURRENCY_WAIT_DURATION_MULTIPLIER = 100;
 
 
@@ -22,7 +21,7 @@ public class ReusableValues {
     }
 
     public static int getDefaultSleepTime() {
-        return DEFAULT_SLEEP_TIME;
+        return DEFAULT_WAIT_TIME;
     }
 
     public static int getDefaultConcurrencyWaitDurationMultiplier() {

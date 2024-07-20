@@ -1,7 +1,7 @@
 package BaseClasses;
 
 import AppiumUtils.CommonActions;
-import AppiumUtils.UniversalLogger;
+import AppiumUtils.ReusableValues;
 import PageObjects.BusBookingPage;
 import PageObjects.LoginPage;
 import PageObjects.TempPage;
@@ -29,21 +29,15 @@ public class AndroidBaseTest extends CommonActions {
 
     @BeforeClass(alwaysRun = true)
     public void androidBaseConfigurations() throws IOException {
-        Configurator.initialize(null,readPropertyFile().getProperty("log4j2Path"));
+        Configurator.initialize(null,System.getProperty("user.dir") + readPropertyFile().getProperty("log4j2Path"));
         readPropertyFile();
         String ipAddress = System.getProperty("ipAddress") != null ? System.getProperty("ipAddress") : readPropertyFile().getProperty("ipAddress");
         int portNumber = System.getProperty("portNumber") != null ? Integer.parseInt(System.getProperty("portNumber")) : getFreePortNumber();
         File appiumMainJSFilePath = getAppiumMainJSFilePath(getLocalMachinePlatformName());
         getAppiumServerStarted(ipAddress, portNumber, appiumMainJSFilePath);
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setCapability("platformName", readPropertyFile().getProperty("platformName"));
-        options.setCapability("automationName", readPropertyFile().getProperty("androidAutomationName"));
-        options.setCapability("deviceName", readPropertyFile().getProperty("deviceName"));
-
         // options.setApp(System.getProperty("user.dir") + "\\src\\main\\java\\Resources\\APKs\\RedBus.apk");
-
-        androidDriver = new AndroidDriver(service.getUrl(), options);
-        androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        androidDriver = new AndroidDriver(service.getUrl(), setUiAutomator2Options());
+        androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ReusableValues.getDefaultWaitTime()));
         objectInitializationManager(androidDriver);
     }
 
@@ -61,11 +55,18 @@ public class AndroidBaseTest extends CommonActions {
     private void getAppiumServerStarted(String ipAddress, int portNumber, File mainJSFilePath) {
         try {
             service = startAppiumServer(ipAddress, portNumber, mainJSFilePath);
-        }
-        catch (AppiumServerHasNotBeenStartedLocallyException e) {
-            System.out.println("Appium Server has not been started. Starting Appium Server");
+        } catch (AppiumServerHasNotBeenStartedLocallyException e) {
+            System.out.println("Failed to start Appium Server. Starting Appium Server again....");
             service = startAppiumServer(ipAddress, portNumber, mainJSFilePath);
         }
+    }
+
+    private UiAutomator2Options setUiAutomator2Options() throws IOException {
+        UiAutomator2Options options = new UiAutomator2Options();
+        options.setCapability("platformName", readPropertyFile().getProperty("platformName"));
+        options.setCapability("automationName", readPropertyFile().getProperty("androidAutomationName"));
+        options.setCapability("deviceName", readPropertyFile().getProperty("deviceName"));
+        return options;
     }
 
     private void objectInitializationManager(AndroidDriver androidDriver) {

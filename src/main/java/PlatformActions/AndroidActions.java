@@ -1,12 +1,14 @@
 package PlatformActions;
 
 import AppiumUtils.CommonActions;
+import AppiumUtils.ReusableValues;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -17,11 +19,17 @@ public class AndroidActions extends CommonActions {
         this.driver = driver;
     }
 
+    public void implementExplicitWait(){
+        AndroidDriver androidDriver = driver;
+        new WebDriverWait(androidDriver, Duration.ofSeconds(ReusableValues.getDefaultWaitTime()));
+    }
+
     protected void setData(WebElement element, String data) {
+        AndroidDriver androidDriver = driver;
         String isElementClickable = element.getAttribute("clickable");
         if (isElementClickable.equals("true")){
             element.click();
-            if (driver.isKeyboardShown()){
+            if (androidDriver.isKeyboardShown()){
                 printMessage("keypad is shown. Closing it now");
                 element.sendKeys(data);
             }

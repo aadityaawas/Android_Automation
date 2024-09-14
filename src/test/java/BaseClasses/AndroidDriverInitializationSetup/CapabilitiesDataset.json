@@ -1,0 +1,5 @@
+{
+  "automationName": "UiAutomator2",
+  "platformName": "Android",
+  "deviceName": "testingDevice"
+}

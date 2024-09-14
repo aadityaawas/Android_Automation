@@ -1,13 +1,22 @@
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:51 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Reading properties file
-2024-07-21 02:53:59 INFO  UniversalLogger:9 - Properties file read successfully
-2024-07-21 02:54:06 DEBUG UniversalLogger:13 - Hello
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Reading properties file
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Properties file read successfully
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Reading properties file
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Properties file read successfully
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Reading properties file
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Properties file read successfully
+2024-09-14 13:00:21 WARN  UniversalLogger:21 - Appium server may fail to start as it depends upon the high memory utilization.
+2024-09-14 13:00:21 INFO  UniversalLogger:9 - Starting Appium Server...
+2024-09-14 13:00:35 WARN  UniversalLogger:21 - Appium server may fail to start as it depends upon the high memory utilization.
+2024-09-14 13:00:35 INFO  UniversalLogger:9 - Starting Appium Server...
+2024-09-14 13:00:39 INFO  UniversalLogger:9 - Setting up Appium Android Connection
+2024-09-14 13:00:39 ERROR UniversalLogger:17 - com.fasterxml.jackson.core.JsonParseException: Unexpected character ('\' (code 92)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1]
+2024-09-14 13:00:39 WARN  UniversalLogger:21 - Failed to connect android driver with Appium server. Retrying....
+2024-09-14 13:00:39 ERROR UniversalLogger:17 - Android Driver is null. Check android driver initialization......
+2024-09-14 13:00:39 INFO  UniversalLogger:9 - Setting up Appium Android Connection
+2024-09-14 13:00:39 ERROR UniversalLogger:17 - com.fasterxml.jackson.core.JsonParseException: Unexpected character ('\' (code 92)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1]
+2024-09-14 13:00:39 WARN  UniversalLogger:21 - Failed to connect android driver with Appium server. Retrying....
+2024-09-14 13:00:39 ERROR UniversalLogger:17 - Android Driver is null. Check android driver initialization......
+2024-09-14 13:00:39 DEBUG UniversalLogger:13 - Hello
+2024-09-14 13:00:39 INFO  UniversalLogger:9 - Test executing stopped. Performing cleanup

@@ -27,4 +27,10 @@ public class ReusableValues {
     public static int getDefaultConcurrencyWaitDurationMultiplier() {
         return DEFAULT_CONCURRENCY_WAIT_DURATION_MULTIPLIER;
     }
+
+    public static final String ANDROID_DRIVER_CAPABILITY_FILE_PATH = "\\src\\test\\java\\BaseClasses\\AndroidDriverInitializationSetup\\AndroidDriverCapabilities.json";
+
+
+
+
 }

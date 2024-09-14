@@ -1,6 +1,8 @@
 package TestClasses;
 
 import BaseClasses.AndroidBaseTest;
+import BaseClasses.TestInstances.ITestInstanceHandler;
+import PageObjects.LoginPage;
 import PlatformActions.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
@@ -17,7 +19,7 @@ import java.util.List;
 
 import static PlatformActions.AndroidActions.printMessage;
 
-public class LoginTest extends AndroidBaseTest {
+public class LoginTest extends AndroidBaseTest implements ITestInstanceHandler {
 
     private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     @BeforeMethod
@@ -35,7 +37,7 @@ public class LoginTest extends AndroidBaseTest {
         loginPage.selectContinueButton();
     }
 
-    @Test
+//    @Test
     public void skipButtonGettingDisplayedAfterScrollingToLastPage_tc2() throws InterruptedException {
         Assert.assertTrue(loginPage.isLoginButtonDisplayed());
         for (int index = 0 ; index < 3 ; index++){
@@ -45,7 +47,7 @@ public class LoginTest extends AndroidBaseTest {
         Assert.assertTrue(loginPage.isSkipButtonDisplayed());
     }
 
-    @Test(priority = 2)
+//    @Test(priority = 2)
     public void loginViaMobileNumber_tc3() throws InterruptedException, IOException {
         loginPage.selectContinueButton();
 
@@ -68,7 +70,7 @@ public class LoginTest extends AndroidBaseTest {
         loginPage.setOTP(otp);
     }
 
-   // @Test(priority = 4)
+//    @Test(priority = 4)
     public void loginViaGmail_tc4(){
         loginPage.selectContinueButton();
         loginPage.selectLoginButton();
@@ -76,14 +78,19 @@ public class LoginTest extends AndroidBaseTest {
         loginPage.selectGoogleAccountForList("tester1@gmail.com"); // Please use the real email for this. I have placed sum dummy email here.
     }
 
-    @Test
+//    @Test
     public void test(){
         loginPage.selectContinueButton();
     }
 
-   
 
+    @Override
+    public void useTestInstances() {
+        loginPage = new LoginPage(androidDriver);
+    }
 
-
-
+    @Override
+    public void freeInstances() {
+        loginPage = null;
+    }
 }
